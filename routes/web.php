@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/open-tickets', [TicketController::class, 'openTickets']);
+Route::get('/closed-tickets', [TicketController::class, 'closedTickets']);
+Route::get('/users/{email}/tickets', [TicketController::class, 'userTickets']);
+Route::get('/stats', [TicketController::class, 'stats']);
