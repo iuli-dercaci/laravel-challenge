@@ -18,7 +18,7 @@ class Ticket extends Model
         'status',
     ];
 
-    public function scopeOpen(Builder $query): Builder
+    public function scopeOpened(Builder $query): Builder
     {
         return $query->where('status', false);
     }
