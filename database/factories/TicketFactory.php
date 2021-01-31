@@ -22,6 +22,7 @@ class TicketFactory extends Factory
         return [
             'subject' => $this->faker->words(rand(1, 3), true),
             'content' => $this->faker->paragraphs(rand(1, 3), true),
+            'status'  => false,
         ];
 
     }
