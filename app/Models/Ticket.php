@@ -29,16 +29,27 @@ class Ticket extends Model
         'status',
     ];
 
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
     public function scopeOpened(Builder $query): Builder
     {
         return $query->where('status', false);
     }
 
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
     public function scopeClosed(Builder $query): Builder
     {
         return $query->where('status', true);
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
