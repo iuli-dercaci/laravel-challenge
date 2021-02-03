@@ -26,4 +26,9 @@ class UserRepository extends BaseRepository
             ->orderBy('tickets_count', 'desc')
             ->first();
     }
+
+    public function getFirstUser(): ?User
+    {
+        return $this->model->take(1);
+    }
 }

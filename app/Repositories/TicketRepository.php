@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class TicketRepository extends BaseRepository
 {
@@ -89,5 +91,19 @@ class TicketRepository extends BaseRepository
     public function getLastUpdated(): ?Ticket
     {
         return $this->model->latest('updated_at')->first();
+    }
+
+    /**
+     * @param User $user
+     * @param int $amount
+     * @return Collection|Model|mixed
+     */
+    public function generate(User $user, int $amount)
+    {
+        return Ticket::factory()
+            ->count((int)$amount)
+            ->state(
+                fn(): array => ['user_id' => $user->id]
+            )->create();
     }
 }
