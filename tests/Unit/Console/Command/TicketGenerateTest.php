@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Tests\Unit\Console\Command;
 
@@ -10,31 +11,37 @@ use Tests\TestCase;
 
 class TicketGenerateTest extends TestCase
 {
-    public function testWorksWithoutArguments()
+    public function testWorksWithoutArguments(): void
     {
-        $this->setContainerDependencies(new User());
+        /** @var User $user */
+        $user = $this->mock(User::class);
+        $this->setContainerDependencies($user);
 
         $this->artisan('ticket:generate')
             ->assertExitCode(0);
     }
 
-    public function testWorksWithNumericArguments()
+    public function testWorksWithNumericArguments(): void
     {
-        $this->setContainerDependencies(new User());
+        /** @var User $user */
+        $user = $this->mock(User::class);
+        $this->setContainerDependencies($user);
 
         $this->artisan('ticket:generate 3')
             ->assertExitCode(0);
     }
 
-    public function testWorksWithNonNumericArguments()
+    public function testWorksWithNonNumericArguments(): void
     {
-        $this->setContainerDependencies(new User());
+        /** @var User $user */
+        $user = $this->mock(User::class);
+        $this->setContainerDependencies($user);
 
         $this->artisan('ticket:generate f')
             ->assertExitCode(1);
     }
 
-    public function testWorksWithNonUsers()
+    public function testWorksWithNonUsers(): void
     {
         $this->setContainerDependencies();
 
@@ -42,7 +49,10 @@ class TicketGenerateTest extends TestCase
             ->assertExitCode(1);
     }
 
-    private function setContainerDependencies(?User $user = null)
+    /**
+     * @param User|null $user
+     */
+    private function setContainerDependencies(?User $user = null): void
     {
         $ticketRepository = $this->createMock(TicketRepository::class);
         $ticketRepository
