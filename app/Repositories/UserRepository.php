@@ -29,6 +29,9 @@ class UserRepository extends BaseRepository
 
     public function getFirstUser(): ?User
     {
-        return $this->model->take(1);
+        return $this->model
+            ->orderBy('id')
+            ->take(1)
+            ->first();
     }
 }
