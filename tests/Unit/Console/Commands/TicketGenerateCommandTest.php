@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Console\Command;
+namespace Tests\Unit\Console\Commands;
 
 use App\Models\User;
 use App\Repositories\TicketRepository;
@@ -9,7 +9,7 @@ use App\Repositories\UserRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Tests\TestCase;
 
-class TicketGenerateTest extends TestCase
+class TicketGenerateCommandTest extends TestCase
 {
     public function testWorksWithoutArguments(): void
     {
