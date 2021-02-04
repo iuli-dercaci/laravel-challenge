@@ -40,7 +40,7 @@ class TicketGenerate extends Command
     {
         $amount = $this->argument('amount');
 
-        if (!is_numeric($amount)) {
+        if (!is_numeric($amount) || (int)$amount < 1) {
             return 1;
         }
 
