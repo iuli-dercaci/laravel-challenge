@@ -106,4 +106,12 @@ class TicketRepository extends BaseRepository
                 fn(): array => ['user_id' => $user->id]
             )->create();
     }
+
+    /**
+     * @return Ticket|null
+     */
+    public function getOldestOpen(): ?Ticket
+    {
+        return $this->allOpenBuilder()->oldest()->first();
+    }
 }

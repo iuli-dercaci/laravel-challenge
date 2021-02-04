@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(TicketGenerate::class, ['ticket:generate'])->everyMinute();
+        $schedule->command(TicketGenerate::class, ['ticket:proceed'])->everyFiveMinutes();
     }
 
     /**
